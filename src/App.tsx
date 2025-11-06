@@ -41,6 +41,7 @@ const App = () => {
           <Route path="trang2" element={<Trang2 />} />
           <Route path="ListSanPham" element={<ListSanPham />} />
           <Route path="login" element={<LoginPage />} />
+          <Route path="detail/:id" element={<ProductDetail />} />
 
           {/* ✅ Trang đăng xuất */}
           <Route path="logout" element={<LogoutPage />} />
