@@ -15,7 +15,7 @@ const Layout = () => {
                 <ul className="menutrai" style={{ width: "250px" }}>
                   <li>
                     <a href="/" class="menutrai">
-                      TRANG CHU
+                      TRANG chủ
                     </a>
                   </li>
                   <li>
