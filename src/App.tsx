@@ -18,6 +18,14 @@ import ListSanPham from "./ListSanPham";
 import ListProducts_SP from "./ListProducts_SP";
 // @ts-ignore
 import ProductDetail from "./ProductDetail";
+//@ts-ignore
+import LoginPage from "./LoginPage";
+//@ts-ignore
+import LogoutPage from "./LogoutPage";
+//@ts-ignore
+import ProtectedRoute from "./ProtectedRoute";
+//@ts-ignore
+import ListProducts_SP_Admin from "./ListProducts_SP_Admin";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -32,6 +40,20 @@ const App = () => {
           <Route path="sanpham/:id" element={<Chitietsanpham />} />
           <Route path="trang2" element={<Trang2 />} />
           <Route path="ListSanPham" element={<ListSanPham />} />
+          <Route path="login" element={<LoginPage />} />
+
+          {/* ✅ Trang đăng xuất */}
+          <Route path="logout" element={<LogoutPage />} />
+
+          {/* ✅ Trang quản trị (nằm trong Layout, chỉ Admin truy cập) */}
+          <Route
+            path="admin/products"
+            element={
+              <ProtectedRoute>
+                <ListProducts_SP_Admin />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

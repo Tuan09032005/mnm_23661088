@@ -19,6 +19,11 @@ const Layout = () => {
                     </a>
                   </li>
                   <li>
+                    <a class="menutrai" href="/admin/products">
+                      QUAN TRI
+                    </a>
+                  </li>
+                  <li>
                     <a class="menutrai" href="/ListSanPham">
                       SanPham
                     </a>
@@ -29,6 +34,7 @@ const Layout = () => {
                       EGOV
                     </a>
                   </li>
+
                   <li>
                     <a class="menutrai" href="/trang2">
                       SINH VIÊN
