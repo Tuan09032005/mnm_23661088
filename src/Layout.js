@@ -1,8 +1,24 @@
 import "./assets/css/layout.css";
 import logo from "./assets/images/Ten-truong-do-1000x159.png";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Layout = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/login");
+  };
   return (
     <html>
       <header>
@@ -12,7 +28,7 @@ const Layout = () => {
           <div id="banner" className="banner">
             <div id="divmenutrai">
               <nav id="menutrai">
-                <ul className="menutrai" style={{ width: "250px" }}>
+                <ul className="menutrai" style={{ width: "400px" }}>
                   <li>
                     <a href="/" class="menutrai">
                       TRANG chủ
@@ -36,19 +52,33 @@ const Layout = () => {
                   </li>
 
                   <li>
-                    <a class="menutrai" href="/trang2">
+                    <a class="menutrai" href="/trang2" alt="logo">
                       SINH VIÊN
                     </a>
                   </li>
                 </ul>
               </nav>
             </div>
-            <div style={{ width: "1000px" }}>
+            <div style={{ width: "900px" }}>
               <a href="/">
                 <img src={logo} width="500" height="80" />
               </a>
             </div>
-            <div>Tim kiem</div>
+            <div class="menutrai">
+              {" "}
+              {user ? (
+                <>
+                  <span className="username"> {user.username}</span>
+                  <button className="logout-btn" onClick={handleLogout}>
+                    Đăng xuất
+                  </button>
+                </>
+              ) : (
+                <a href="/login" className="login-link">
+                  Đăng nhập
+                </a>
+              )}
+            </div>
           </div>
           <div id="menubar" className="menubar">
             <nav class="navbar">
