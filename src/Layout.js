@@ -19,160 +19,86 @@ const Layout = () => {
     setUser(null);
     navigate("/login");
   };
+
+  // 🔒 Xác định admin
+  const isAdmin = user && user.role === "admin";
+
   return (
-    <html>
-      <header>
-        <link rel="stylesheet" href="assets/css/layout.css" />
+    <div className="layout">
+      {/* HEADER */}
+      <header className="header">
+        <div className="top-bar">
+          <nav className="menu-left">
+            <ul>
+              <li>
+                <a href="/">Trang chủ</a>
+              </li>
 
-        <div id="header" className="header">
-          <div id="banner" className="banner">
-            <div id="divmenutrai">
-              <nav id="menutrai">
-                <ul className="menutrai" style={{ width: "400px" }}>
-                  <li>
-                    <a href="/" class="menutrai">
-                      TRANG chủ
-                    </a>
-                  </li>
-                  <li>
-                    <a class="menutrai" href="/admin/products">
-                      QUAN TRI
-                    </a>
-                  </li>
-                  <li>
-                    <a class="menutrai" href="/ListSanPham">
-                      SanPham
-                    </a>
-                  </li>
-                  <li>
-                    <a class="menutrai" href="/trang1">
-                      {" "}
-                      EGOV
-                    </a>
-                  </li>
-
-                  <li>
-                    <a class="menutrai" href="/trang2" alt="logo">
-                      SINH VIÊN
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div style={{ width: "900px" }}>
-              <a href="/">
-                <img src={logo} width="500" height="80" />
-              </a>
-            </div>
-            <div class="menutrai">
-              {" "}
-              {user ? (
-                <>
-                  <span className="username"> {user.username}</span>
-                  <button className="logout-btn" onClick={handleLogout}>
-                    Đăng xuất
-                  </button>
-                </>
-              ) : (
-                <a href="/login" className="login-link">
-                  Đăng nhập
-                </a>
+              {/* Chỉ hiện Quản trị nếu admin */}
+              {isAdmin && (
+                <li>
+                  <a href="/admin/products">Quản trị</a>
+                </li>
               )}
-            </div>
+
+              <li>
+                <a href="/ListSanPham">Sản phẩm</a>
+              </li>
+              <li>
+                <a href="/trang1">E-GOV</a>
+              </li>
+              <li>
+                <a href="/trang2">Sinh viên</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="header-center">
+            <a href="/">
+              <img src={logo} alt="Logo" className="logo" />
+            </a>
           </div>
-          <div id="menubar" className="menubar">
-            <nav class="navbar">
-              {" "}
-              <ul>
-                <li>
-                  <a href="#">GIỚI THIỆU</a>
-                  <ul>
-                    <li>
-                      <a href="#">lịch sử hình thành và phát triển</a>
-                    </li>
-                    <li>
-                      <a href="#">bộ máy tổ chức</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">TIN TỨC</a>
-                </li>
-                <li>
-                  <a href="#">TUYỂN SINH</a>
-                  <ul>
-                    <li>
-                      <a href="#">tuyển sinh 2025</a>
-                    </li>
-                    <li>
-                      <a href="#">tuyển sinh chính quy</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">CÔNG KHAI GIÁO DỤC</a>
-                  <ul>
-                    <li>
-                      <a href="#">công khai thường niên</a>
-                    </li>
-                    <li>
-                      <a href="#">chất lượng đào tạo</a>
-                    </li>
-                    <li>
-                      <a href="#">chuẩn đầu ra</a>
-                    </li>
-                    <li>
-                      <a href="#">đội ngũ giảng viên</a>
-                    </li>
-                    <li>
-                      <a href="#">cơ sở vật chất</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">CƠ CẤU TỔ CHỨC</a>
-                  <ul>
-                    <li>
-                      <a href="#">đảng ,toàn thể</a>
-                    </li>
-                    <li>
-                      <a href="#">ban giám hiệu</a>
-                    </li>
-                    <li>
-                      <a href="#">phòng ban</a>
-                    </li>
-                    <li>
-                      <a href="#">khoa chuyênmôn</a>
-                    </li>
-                    <li>
-                      <a href="#">trung tâm</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">LIÊN KẾT</a>
-                  <ul>
-                    <li>
-                      <a href="#">thông tin từ sở dt tphcm</a>
-                    </li>
-                    <li>
-                      <a href="#">cổng dky tuyển sinh</a>
-                    </li>
-                    <li>
-                      <a href="#">sổ tay sinh viên</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
+
+          <div className="header-right">
+            {user ? (
+              <div className="user-info">
+                <span>👤 {user.username}</span>
+                <button onClick={handleLogout} className="logout-btn">
+                  Đăng xuất
+                </button>
+              </div>
+            ) : (
+              <a href="/login" className="login-btn">
+                Đăng nhập
+              </a>
+            )}
           </div>
         </div>
+
+        {/* NAVBAR XANH tạm */}
+        <nav className="nav-blue">
+          <ul>
+            <li>
+              <a href="#">Menu 1</a>
+            </li>
+            <li>
+              <a href="#">Menu 2</a>
+            </li>
+          </ul>
+        </nav>
       </header>
-      <body>
+
+      {/* MAIN CONTENT */}
+      <main className="main-content">
         <Outlet />
-      </body>
-      <footer></footer>
-    </html>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="footer">
+        <p>© 2025 Tuan 23661088</p>
+      </footer>
+    </div>
   );
 };
+
 export default Layout;
